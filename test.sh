@@ -19,7 +19,9 @@ export BLUE_SUBNET=$(curl -s -X POST http://127.0.0.1:9696/v2.0/subnets \
 				\"enable_dhcp\": true,
 				\"gateway_ip\": \"10.0.0.1\"
 			}
-		}")
+		}" | python -m json.tool > bsub.json)
+export bsubid=$(cat bsub.json | jq -r '.subnet.id')	
+echo $bsubid
 export RED_SUBNET=$(curl -s -X POST http://127.0.0.1:9696/v2.0/subnets \
             -H "Content-Type: application/json" \
             -H "X-Auth-Token: $OS_TOKEN" \
@@ -34,6 +36,7 @@ export RED_SUBNET=$(curl -s -X POST http://127.0.0.1:9696/v2.0/subnets \
 			}
 		}")
 		
-curl -s http://127.0.0.1:9696/v2.0/routers -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "X-Auth-Token:$OS_TOKEN" -d '{"router":{"external_gateway_info":{"network_id":"7697d4c6-5b4c-4ea9-a1d6-af7d7f716f2b"},"name":"router-new"}}' | python -m json.tool		
-
-#curl -s http://127.0.0.1:9696/v2.0/routers/5cd17bbd-5d01-4b71-94e0-67a064250873/add_router_interface -X PUT -H "Content-Type: application/json" -H "Accept: application/json" -H "X-Auth-Token:$OS_TOKEN" -d '{"subnet_id":"06e5b152-37f9-4591-8100-ce2061f081de"}' | python -m json.tool
+curl -s http://127.0.0.1:9696/v2.0/routers -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "X-Auth-Token:$OS_TOKEN" -d '{"router":{"external_gateway_info":{"network_id":"7697d4c6-5b4c-4ea9-a1d6-af7d7f716f2b"},"name":"router-new"}}' | python -m json.tool > rout.json		
+export router=$(cat rout.json | jq -r '.router.id')
+echo $router
+curl -s http://127.0.0.1:9696/v2.0/routers/$router/add_router_interface -X PUT -H "Content-Type: application/json" -H "Accept: application/json" -H "X-Auth-Token:$OS_TOKEN" -d '{"subnet_id":"$bsubid"}' | python -m json.tool
