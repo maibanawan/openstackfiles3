@@ -6,3 +6,4 @@ export BLUE_create=$(curl -s http://127.0.0.1:9696/v2.0/networks -X POST -H "Con
 export RED_create=$(curl -s http://127.0.0.1:9696/v2.0/networks -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "X-Auth-Token:$OS_TOKEN" -d '{"network": {"name":"RED"}}' | python -m json.tool > r.json)
 red=$(cat r.json | jq '.network.id')
 echo $red
+export red_sub=$(curl -s http://127.0.0.1:9696/v2.0/subnets -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "X-Auth-Token:$OS_TOKEN" -d '{"subnet":{"name":"Subamp","cidr":"120.1.2.0/24","ip_version":4,"network_id":$red}}' | python -m json.tool)
