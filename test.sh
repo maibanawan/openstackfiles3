@@ -66,4 +66,4 @@ export ADD_ROUTER_IF2=$(curl -s -X PUT http://127.0.0.1:9696/v2.0/routers/$route
 #			}
 #		}")
 
-curl -g -i -X POST http://127.0.0.1:5000/v2/187d635aec4c43fe8e8918afb3a5c82e/servers -H "Accept: application/json"  -H "X-Auth-Token: $OS_TOKEN" -H "Content-Type: application/json" -d '{"server": {"name": "test", "imageRef": "aaab4dfd-8d9c-409e-a821-a0137e49e869", "flavorRef": "1", "max_count": 1, "min_count": 1, "networks": [{"uuid": "8e914159-3477-4a5e-8d3d-2f6c02fa9451"}], "security_groups": [{"name": "default"}]}}'
+curl -g -i -X POST http://127.0.0.1:8774/v2/187d635aec4c43fe8e8918afb3a5c82e/servers -H "Accept: application/json"  -H "X-Auth-Token: $OS_TOKEN" -H "Content-Type: application/json" -d '{"server": {"name": "test", "imageRef": "aaab4dfd-8d9c-409e-a821-a0137e49e869", "flavorRef": "1", "max_count": 1, "min_count": 1, "networks": [{"uuid": "8e914159-3477-4a5e-8d3d-2f6c02fa9451"}], "security_groups": [{"name": "default"}]}}'
