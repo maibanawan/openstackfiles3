@@ -55,7 +55,6 @@ export ADD_ROUTER_IF2=$(curl -s -X PUT http://127.0.0.1:9696/v2.0/routers/$route
 #curl -s http://127.0.0.1:9696/v2.0/routers/$router/add_router_interface -X PUT -H "Content-Type: application/json" -H "Accept: application/json" -H "X-Auth-Token:$OS_TOKEN" -d '{"subnet_id":"$bsubid"}' | python -m json.tool
 #server create --flavor m1.nano --image cirros-0.3.5-x86_64-disk --nic net-id=$red selfservice-instance
 export vmb=$(curl -g -i -X POST http://127.0.0.1/compute/v2.1/servers \
-            -H "Accept: application/json" \
 	    -H "X-Auth-Token: $OS_TOKEN" \ 
 	    -H "Content-Type: application/json" \
 	    -d "{ 
