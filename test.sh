@@ -53,4 +53,5 @@ export ADD_ROUTER_IF2=$(curl -s -X PUT http://127.0.0.1:9696/v2.0/routers/$route
 			\"subnet_id\": \"$rsubid\"
 		}")		
 #curl -s http://127.0.0.1:9696/v2.0/routers/$router/add_router_interface -X PUT -H "Content-Type: application/json" -H "Accept: application/json" -H "X-Auth-Token:$OS_TOKEN" -d '{"subnet_id":"$bsubid"}' | python -m json.tool
-server create --flavor m1.nano --image cirros-0.3.5-x86_64-disk --nic net-id=$red selfservice-instance
+#server create --flavor m1.nano --image cirros-0.3.5-x86_64-disk --nic net-id=$red selfservice-instance
+curl -g -i -X POST http://127.0.0.1/compute/v2.1/servers -H "Accept: application/json"  -H "X-Auth-Token: $OS_TOKEN" -H "Content-Type: application/json" -d '{"server": {"name": "VM1", "imageRef": "aaab4dfd-8d9c-409e-a821-a0137e49e869", "flavorRef": "1", "networks": [{"uuid": "$blue"}]}}'
