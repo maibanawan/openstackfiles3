@@ -49,7 +49,7 @@ echo $router
 export ADD_ROUTER_IF2=$(curl -s -X PUT http://127.0.0.1:9696/v2.0/routers/$router/add_router_interface \
             -H "Content-Type: application/json" \
             -H "X-Auth-Token: $OS_TOKEN" \
-	    -d "{
+	   -d "{
 			\"subnet_id\": \"$rsubid\"
 		}")		
 #curl -s http://127.0.0.1:9696/v2.0/routers/$router/add_router_interface -X PUT -H "Content-Type: application/json" -H "Accept: application/json" -H "X-Auth-Token:$OS_TOKEN" -d '{"subnet_id":"$bsubid"}' | python -m json.tool
