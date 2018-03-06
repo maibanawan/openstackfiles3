@@ -3,8 +3,5 @@ export OS_TOKEN=$(curl -i -H "Content-Type: application/json" -d '{ "auth": {"id
 echo $OS_TOKEN
 export BLUE_create=$(curl -s http://127.0.0.1:9696/v2.0/networks -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "X-Auth-Token:$OS_TOKEN" -d '{"network": {"name":"BLUE"}}' | python -m json.tool)
 export RED_create=$(curl -s http://127.0.0.1:9696/v2.0/networks -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "X-Auth-Token:$OS_TOKEN" -d '{"network": {"name":"RED"}}' | python -m json.tool > r.json)
-if [ $# -lt 1 ]; then
-	echo "Usage: $([ -z $BASH_ARGV ] && basename $0 || basename $BASH_ARGV) <network id>"
-	exit 1
-fi
-echo $1
+export red=$(curl -s http://127.0.0.1:9696/v2.0/networks -X GET -H "Content-Type: application/json" -H "Accept: application/json" -H "X-Auth-Token:$OS_TOKEN")
+echo $red
