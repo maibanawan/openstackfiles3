@@ -12,10 +12,9 @@ export RESP_JSON_SUBNETS_CREATE=$(curl -s -X POST http://127.0.0.1:9696/v2.0/sub
 			\"subnet\": {
 				\"network_id\": \"$1\",
 				\"ip_version\": 4,
-				\"name\": \"subnet-$RANDOM\",
-				\"cidr\": \"192.168.100.0/24\",
+				\"name\": \"subnet-red\",
+				\"cidr\": \"192.168.1.0/24\",
 				\"enable_dhcp\": true,
-				\"dns_nameservers\": [\"8.8.8.8\"],
 				\"gateway_ip\": \"192.168.100.1\"
 			}
 		}")
