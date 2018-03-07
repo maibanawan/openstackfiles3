@@ -22,7 +22,8 @@ export PUBLIC_SUBNET=$(curl -s -X POST http://127.0.0.1:9696/v2.0/subnets \
 				\"gateway_ip\": \"172.24.4.1\"
 			}
 		}" | python -m json.tool > psub.json)
-export psubid=$(cat psub.json | jq -r '.subnet.id')		
+export psubid=$(cat psub.json | jq -r '.subnet.id')	
+echo $psubid
 export BLUE_SUBNET=$(curl -s -X POST http://127.0.0.1:9696/v2.0/subnets \
             -H "Content-Type: application/json" \
             -H "X-Auth-Token: $OS_TOKEN" \
