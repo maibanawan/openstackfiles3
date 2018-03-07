@@ -6,22 +6,22 @@ echo $OS_TOKEN
 export RESP_JSON_NETWORKS=$(curl -s -X GET http://127.0.0.1:9696/v2.0/networks/ \
             -H "Content-Type: application/json" \
             -H "X-Auth-Token: $OS_TOKEN" | python -mjson.tool > network_status.json)
-export net1_name=$(cat network_status.json | jq -r '.networks[1].name')
-export net1_id=$(cat network_status.json | jq -r '.networks[1].id')
-export net1_status=$(cat network_status.json | jq -r '.networks[1].status')	
-export net2_name=$(cat network_status.json | jq -r '.networks[2].name')
-export net2_id=$(cat network_status.json | jq -r '.networks[2].id')
-export net2_status=$(cat network_status.json | jq -r '.networks[2].status')
-export net3_name=$(cat network_status.json | jq -r '.networks[3].name')
-export net3_id=$(cat network_status.json | jq -r '.networks[3].id')
-export net3_status=$(cat network_status.json | jq -r '.networks[3].status')
+export net1_name=$(cat network_status.json | jq -r '.networks[0].name')
+export net1_id=$(cat network_status.json | jq -r '.networks[0].id')
+export net1_status=$(cat network_status.json | jq -r '.networks[0].status')	
+export net2_name=$(cat network_status.json | jq -r '.networks[1].name')
+export net2_id=$(cat network_status.json | jq -r '.networks[1].id')
+export net2_status=$(cat network_status.json | jq -r '.networks[1].status')
+export net3_name=$(cat network_status.json | jq -r '.networks[2].name')
+export net3_id=$(cat network_status.json | jq -r '.networks[2].id')
+export net3_status=$(cat network_status.json | jq -r '.networks[2].status')
 export OS_TOKEN=${OS_TOKEN//$'\015'}
 export RESP_JSON_SERVERS=$(curl -s -X GET http://127.0.0.1/compute/v2.1/servers \
             -H "Content-Type: application/json" \
             -H "X-Auth-Token: $OS_TOKEN" | python -mjson.tool > server_id.json)
-export vm1_id=$(cat server_id.json | jq -r '.servers[1].id')
-export vm2_id=$(cat server_id.json | jq -r '.servers[2].id')
-export vm3_id=$(cat server_id.json | jq -r '.servers[3].id')
+export vm1_id=$(cat server_id.json | jq -r '.servers[0].id')
+export vm2_id=$(cat server_id.json | jq -r '.servers[1].id')
+export vm3_id=$(cat server_id.json | jq -r '.servers[2].id')
 
 echo $vm1_id
 export RESP_JSON_SERVERS=$(curl -s -X GET http://127.0.0.1/compute/v2.1/servers/$vm1_id \
