@@ -169,6 +169,6 @@ export RESP_JSON_SECURITY_GROUP_RULES_CREATE=$(curl -s -X POST http://127.0.0.1:
 								
 export RESP_JSON_NETWORKS=$(curl -s -X GET http://127.0.0.1:9696/v2.0/networks/$public \
             -H "Content-Type: application/json" \
-            -H "X-Auth-Token: $OS_TOKEN"  | python -m json.tool > s1.json))
+            -H "X-Auth-Token: $OS_TOKEN" | python -m json.tool > s1.json))
 echo $RESP_JSON_NETWORKS
 	    
