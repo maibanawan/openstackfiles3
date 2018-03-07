@@ -18,6 +18,7 @@ export port_$x_id=$(cat ports.json | jq -r '.ports['$i'].id')
 echo $port_$x_id
 export port_$x_status=$(cat ports.json | jq -r '.ports['$i'].status')
 x=$(( $x + 1 ))
+echo $x
 fi
 done
 
