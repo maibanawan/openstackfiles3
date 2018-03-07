@@ -21,7 +21,7 @@ export RESP_JSON_SERVERS=$(curl -s -X GET http://127.0.0.1/compute/v2.1/servers 
             -H "X-Auth-Token: $OS_TOKEN" | python -mjson.tool > server_id.json)
 export vm1_id=$(cat server_id.json | jq -r '.servers[1].id')
 export vm2_id=$(cat server_id.json | jq -r '.servers[2].id')
-export vm3_id=$(cat server_id.json | jq -r '.servers[2].id')
+export vm3_id=$(cat server_id.json | jq -r '.servers[3].id')
 
 echo $vm1_id
 export RESP_JSON_SERVERS=$(curl -s -X GET http://127.0.0.1/compute/v2.1/servers/$vm1_id \
