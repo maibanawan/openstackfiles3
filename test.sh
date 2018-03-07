@@ -19,7 +19,7 @@ export PUBLIC_SUBNET=$(curl -s -X POST http://127.0.0.1:9696/v2.0/subnets \
 				\"name\": \"subnet-public\",
 				\"cidr\": \"172.24.4.0/24\",
 				\"enable_dhcp\": true,
-				\"gateway_ip\": \"none\"
+				\"gateway\": \"disable\"
 			}
 		}" | python -m json.tool > psub.json)
 export psubid=$(cat psub.json | jq -r '.subnet.id')	
