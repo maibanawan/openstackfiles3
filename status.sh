@@ -41,6 +41,10 @@ export RESP_JSON_SERVERS=$(curl -s -X GET http://127.0.0.1/compute/v2.1/servers/
             -H "X-Auth-Token: $OS_TOKEN" | python -mjson.tool > vm3.json)
 export vm3_name=$(cat vm3.json | jq -r '.server.id')
 export vm3_status=$(cat vm3.json | jq -r '.server.status')
+
+export RESP_JSON_ROUTERS=$(curl -s -X GET http://127.0.0.1:9696/v2.0/routers \
+            -H "Content-Type: application/json" \
+            -H "X-Auth-Token: $OS_TOKEN" | python -mjson.tool > router_status.json)
 	    	    
 
 
