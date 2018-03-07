@@ -16,7 +16,7 @@ export net3_name=$(cat network_status.json | jq -r '.networks[3].name')
 export net3_id=$(cat network_status.json | jq -r '.networks[3].id')
 export net3_status=$(cat network_status.json | jq -r '.networks[3].status')
 export OS_TOKEN=${OS_TOKEN//$'\015'}
-export RESP_JSON_SERVERS=$(curl -s -X GET http://127.0.0.1/compute/v2.1/servers \
+export RESP_JSON_SERVERS=$(curl -s -X GET http://127.0.0.1/compute/v2.1/servers/ace890da-e765-41e5-bbce-839cc9d90da1 \
             -H "Content-Type: application/json" \
             -H "X-Auth-Token: $OS_TOKEN" | python -mjson.tool > server_status.json)
 echo $RESP_JSON_SERVERS	    
