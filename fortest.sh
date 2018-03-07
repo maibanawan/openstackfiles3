@@ -7,7 +7,7 @@ export RESP_JSON_ROUTERS=$(curl -s -X GET http://127.0.0.1:9696/v2.0/ports \
             -H "X-Auth-Token: $OS_TOKEN" | python -mjson.tool > ports.json)
 
 x=1;
-for i in `seq 1 9`
+for i in `seq 0 8`
 do
 export port_router=$(cat ports.json | jq -r '.ports['$i'].device_owner')
 echo $port_router
