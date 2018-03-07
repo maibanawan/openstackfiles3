@@ -9,11 +9,11 @@ export RESP_JSON_ROUTERS=$(curl -s -X GET http://127.0.0.1:9696/v2.0/ports \
 x=1;
 for i in `seq 1 9`
 do
-export port_router=$(cat ports.json | jq -r '.ports[$i].device_owner')
+export port_router=$(cat ports.json | jq -r '.ports['$i'].device_owner')
 if [[ port_router == "network:router_interface" ]];
 then
-export port_$x_id=$(cat ports.json | jq -r '.ports[$i].id')
-export port_$x_status=$(cat ports.json | jq -r '.ports[$i].status')
+export port_$x_id=$(cat ports.json | jq -r '.ports['$i'].id')
+export port_$x_status=$(cat ports.json | jq -r '.ports['$i'].status')
 x=$(( $x + 1 ))
 fi
 done
