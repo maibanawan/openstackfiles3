@@ -53,7 +53,18 @@ export RED_SUBNET=$(curl -s -X POST http://127.0.0.1:9696/v2.0/subnets \
 		}" | python -m json.tool > rsub.json)
 export rsubid=$(cat rsub.json | jq -r '.subnet.id')
 echo $rsubid
-curl -s http://127.0.0.1:9696/v2.0/routers -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "X-Auth-Token:$OS_TOKEN" -d '{"router":{"external_gateway_info":{"network_id":"11cfdf0d-2b10-41d8-a919-efdaabddb08e"},"name":"router-new"}}' | python -m json.tool > rout.json		
+#curl -s http://127.0.0.1:9696/v2.0/routers -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "X-Auth-Token:$OS_TOKEN" -d '{"router":{"external_gateway_info":{"network_id":"11cfdf0d-2b10-41d8-a919-efdaabddb08e"},"name":"router-new"}}' | python -m json.tool > rout.json		
+export RESP_JSON_ROUTERS_CREATE=$(curl -s -X POST http://127.0.0.1:9696/v2.0/routers \
+            -H "Content-Type: application/json" \
+            -H "X-Auth-Token: $OS_TOKEN" \
+	    -d "{
+			\"router\": {
+				\"external_gateway_info\": {
+					\"network_id\": \"$public\"
+				},
+				\"name\": \"router-new\"
+			}
+		}" | python -m json.tool > rout.json)
 export router=$(cat rout.json | jq -r '.router.id')
 echo $router
 export ADD_ROUTER_IF1=$(curl -s -X PUT http://127.0.0.1:9696/v2.0/routers/$router/add_router_interface \
