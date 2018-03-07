@@ -67,12 +67,13 @@ export OS_TOKEN=${OS_TOKEN//$'\015'}
 #	   }
 #    }")
 
-curl -g -i -X POST http://localhost/compute/v2/servers -H "Accept: application/json"  -H "X-Auth-Token: $OS_TOKEN" -H "Content-Type: application/json" \
--d "{
-      \"server\": {
-                    \"name\": \"test\",
-	            \"imageRef\": \"aaab4dfd-8d9c-409e-a821-a0137e49e869\",
-	            \"flavorRef\": \"5\",
-	            \"networks\": \"$blue\",
-	           }
-    }"
+#curl -g -i -X POST http://localhost/compute/v2/servers -H "Accept: application/json"  -H "X-Auth-Token: $OS_TOKEN" -H "Content-Type: application/json" \
+#-d "{
+#      \"server\": {
+#                    \"name\": \"test\",
+#	            \"imageRef\": \"aaab4dfd-8d9c-409e-a821-a0137e49e869\",
+#	            \"flavorRef\": \"5\",
+#	            \"networks\": \"$blue\",
+#	           }
+#   }"
+curl -X POST "http://10.0.2.15/compute/v2.1/servers" -H "Content-Type: application/json" -H "X-Auth-Token: $OS_TOKEN" -d "{\"server\":{\"name\":\"vm3\",\"imageRef\":\"aaab4dfd-8d9c-409e-a821-a0137e49e869\", \"flavorRef\":42, \"networks\": [{\"uuid\": \"$blue\"}]}}"
