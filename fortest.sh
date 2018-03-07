@@ -10,6 +10,7 @@ x=1;
 for i in `seq 1 9`
 do
 export port_router=$(cat ports.json | jq -r '.ports['$i'].device_owner')
+echo $port_router
 if [[ port_router == "network:router_interface" ]];
 then
 export port_$x_id=$(cat ports.json | jq -r '.ports['$i'].id')
