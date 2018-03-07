@@ -90,7 +90,43 @@ cat <<EOF > myjson.json
 	    "status":"$net3_status"
 	  }
 	  
-	}
+	},
+    "Virtual machines": 
+        {
+	  {
+	    "Name":"$vm1_name",
+	    "ID":"$vm1_id",
+	    "status":"$vm1_status"
+	  },
+	  {
+	    "Name":"$vm2_name",
+	    "ID":"$vm2_id",
+	    "status":"$vm2_status"
+	  },
+	  {
+	    "Name":"$vm3_name",
+	    "ID":"$vm3_id",
+	    "status":"$vm3_status"
+	  }
+	},	
+    "interfaces": 
+        {
+	  {
+	    "Port_owner":"$port_1_owner",
+	    "ID":"$port_1_id",
+	    "status":"$port_1_status"
+	  },
+	  {
+	    "Port_owner":"$port_2_owner",
+	    "ID":"$port_2_id",
+	    "status":"$port_2_status
+	  }'
+	  {
+	    "Port_owner":"$port_3_owner",
+	    "ID":"$port_3_id",
+	    "status":"$port_3_status
+	  }
+	}	
 }
 EOF
 
