@@ -59,12 +59,12 @@ export port_router=$(cat ports.json | jq -r '.ports['$i'].device_owner')
 echo $port_router
 if [[ $port_router == network:router_interface ]] || [[ $port_router == network:router_gateway ]];
 then
-export port_$x_owner=$(cat ports.json | jq -r '.ports['$i'].device_owner')
-echo $port_$x_owner
-export port_$x_id=$(cat ports.json | jq -r '.ports['$i'].id')
-echo $port_$x_id
+export 'port_'$x'_owner'=$(cat ports.json | jq -r '.ports['$i'].device_owner')
+echo $'port_'$x'_owner'
+export 'port_'$x'_id'=$(cat ports.json | jq -r '.ports['$i'].id')
+echo $'port_'$x'_id'
 export 'port_'$x'_status'=$(cat ports.json | jq -r '.ports['$i'].status')
-echo 'port_'$x'_status'
+echo $'port_'$x'_status'
 x=$(( $x + 1 ))
 echo $x
 fi
