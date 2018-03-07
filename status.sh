@@ -19,6 +19,7 @@ export OS_TOKEN=${OS_TOKEN//$'\015'}
 export RESP_JSON_SERVERS=$(curl -s -X GET http://127.0.0.1/compute/v2.1/servers \
             -H "Content-Type: application/json" \
             -H "X-Auth-Token: $OS_TOKEN")
+echo $RESP_JSON_SERVERS	    
 
 
 
