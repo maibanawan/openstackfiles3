@@ -20,10 +20,28 @@ export RESP_JSON_SERVERS=$(curl -s -X GET http://127.0.0.1/compute/v2.1/servers 
             -H "Content-Type: application/json" \
             -H "X-Auth-Token: $OS_TOKEN" | python -mjson.tool > server_id.json)
 export vm1_id=$(cat server_id.json | jq -r '.servers[1].id')
+export vm2_id=$(cat server_id.json | jq -r '.servers[2].id')
+export vm3_id=$(cat server_id.json | jq -r '.servers[2].id')
+
 echo $vm1_id
 export RESP_JSON_SERVERS=$(curl -s -X GET http://127.0.0.1/compute/v2.1/servers/$vm1_id \
             -H "Content-Type: application/json" \
-            -H "X-Auth-Token: $OS_TOKEN" | python -mjson.tool > vm1.json)	   
+            -H "X-Auth-Token: $OS_TOKEN" | python -mjson.tool > vm1.json)
+export vm1_name=$(cat vm1.json | jq -r '.server.id')
+export vm1_status=$(cat vm1.json | jq -r '.server.status')
+
+export RESP_JSON_SERVERS=$(curl -s -X GET http://127.0.0.1/compute/v2.1/servers/$vm2_id \
+            -H "Content-Type: application/json" \
+            -H "X-Auth-Token: $OS_TOKEN" | python -mjson.tool > vm2.json)
+export vm2_name=$(cat vm2.json | jq -r '.server.id')
+export vm2_status=$(cat vm2.json | jq -r '.server.status')
+
+export RESP_JSON_SERVERS=$(curl -s -X GET http://127.0.0.1/compute/v2.1/servers/$vm3_id \
+            -H "Content-Type: application/json" \
+            -H "X-Auth-Token: $OS_TOKEN" | python -mjson.tool > vm3.json)
+export vm3_name=$(cat vm3.json | jq -r '.server.id')
+export vm3_status=$(cat vm3.json | jq -r '.server.status')
+	    	    
 
 
 
