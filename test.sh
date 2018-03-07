@@ -95,3 +95,18 @@ export RESP_JSON_SECURITY_GROUP_RULES_CREATE=$(curl -s -X POST http://127.0.0.1:
 				\"ethertype\": \"IPv4\"
 			}
 		}")
+
+export RESP_JSON_SECURITY_GROUP_RULES_CREATE=$(curl -s -X POST http://127.0.0.1:9696/v2.0/security-group-rules \
+            -H "Content-Type: application/json" \
+            -H "X-Auth-Token: $OS_TOKEN" \
+	    -d "{
+			\"security_group_rule\": {
+				\"security_group_id\": \"a40bda32-d2c8-4255-961a-952cca145ec3\",
+				\"direction\": \"ingress\",
+				\"protocol\": \"tcp\",
+				\"port_range_min\": \"22\",
+				\"port_range_max\": \"22\",
+				\"remote_ip_prefix\": \"0.0.0.0/0\",
+				\"ethertype\": \"IPv4\"
+			}
+		}")
