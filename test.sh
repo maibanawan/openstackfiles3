@@ -16,7 +16,7 @@ export PUBLIC_SUBNET=$(curl -s -X POST http://127.0.0.1:9696/v2.0/subnets \
 			\"subnet\": {
 				\"network_id\": \"$public\",
 				\"ip_version\": 4,
-				\"name\": \"subnet-blue\",
+				\"name\": \"subnet-public\",
 				\"cidr\": \"172.24.4.0/24\",
 				\"enable_dhcp\": true,
 				\"gateway_ip\": \"172.24.4.1\"
