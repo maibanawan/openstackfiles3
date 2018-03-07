@@ -70,9 +70,9 @@ export OS_TOKEN=${OS_TOKEN//$'\015'}
 curl -g -i -X POST http://localhost/compute/v2/servers -H "Accept: application/json"  -H "X-Auth-Token: $OS_TOKEN" -H "Content-Type: application/json" \
 -d "{
       \"server\": {
-              \"name\": \"test\",
-	      \"imageRef\": \"aaab4dfd-8d9c-409e-a821-a0137e49e869\",
-	      \"flavorRef\": \"5\",
-	      \"networks\": \"$blue\",
-	      }
-     }"
+                    \"name\": \"test\",
+	            \"imageRef\": \"aaab4dfd-8d9c-409e-a821-a0137e49e869\",
+	            \"flavorRef\": \"5\",
+	            \"networks\": \"$blue\",
+	           }
+    }"
