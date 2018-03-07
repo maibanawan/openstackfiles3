@@ -2,7 +2,7 @@
 #import json
 export OS_TOKEN=$(curl -i -H "Content-Type: application/json" -d '{ "auth": {"identity": {"methods": ["password"],"password": {"user": {"name": "admin","domain": { "id": "default" },"password": "secret"}}},"scope": {"project": {"name": "admin","domain": { "id": "default" }}}}}' http://localhost/identity/v3/auth/tokens | awk '/X-Subject-Token/ {print $2}')
 echo $OS_TOKEN
-export PUBLIC_create=$(curl -s http://127.0.0.1:9696/v2.0/networks -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "X-Auth-Token:$OS_TOKEN" -d '{"network": {"name":"PUBLIC","provider:network_type":"flat","provider:physical_network":"extent","shared":"true","router:external":"true"}}' | python -m json.tool > p.json)
+export PUBLIC_create=$(curl -s http://127.0.0.1:9696/v2.0/networks -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "X-Auth-Token:$OS_TOKEN" -d '{"network": {"name":"PUBLIC","provider:network_type":"flat","provider:physical_network":"public","shared":"true","router:external":"true"}}' | python -m json.tool > p.json)
 export BLUE_create=$(curl -s http://127.0.0.1:9696/v2.0/networks -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "X-Auth-Token:$OS_TOKEN" -d '{"network": {"name":"BLUE"}}' | python -m json.tool > b.json)
 export RED_create=$(curl -s http://127.0.0.1:9696/v2.0/networks -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "X-Auth-Token:$OS_TOKEN" -d '{"network": {"name":"RED"}}' | python -m json.tool > r.json)
 export public=$(cat p.json | jq -r '.network.id')
@@ -138,4 +138,32 @@ export RESP_JSON_SECURITY_GROUP_RULES_CREATE=$(curl -s -X POST http://127.0.0.1:
 				\"ethertype\": \"IPv4\"
 			}
 		}")
-		
+export RESP_JSON_SECURITY_GROUP_RULES_CREATE=$(curl -s -X POST http://127.0.0.1:9696/v2.0/security-group-rules \
+            -H "Content-Type: application/json" \
+            -H "X-Auth-Token: $OS_TOKEN" \
+	    -d "{
+			\"security_group_rule\": {
+				\"security_group_id\": \"a40bda32-d2c8-4255-961a-952cca145ec3\",
+				\"direction\": \"ingress\",
+				\"protocol\": \"icmp\",
+				\"port_range_min\": \"22\",
+				\"port_range_max\": \"22\",
+				\"remote_ip_prefix\": \"0.0.0.0/0\",
+				\"ethertype\": \"IPv4\"
+			}
+		}")
+export RESP_JSON_SECURITY_GROUP_RULES_CREATE=$(curl -s -X POST http://127.0.0.1:9696/v2.0/security-group-rules \
+            -H "Content-Type: application/json" \
+            -H "X-Auth-Token: $OS_TOKEN" \
+	    -d "{
+			\"security_group_rule\": {
+				\"security_group_id\": \"a40bda32-d2c8-4255-961a-952cca145ec3\",
+				\"direction\": \"egress\",
+				\"protocol\": \"icmp\",
+				\"port_range_min\": \"22\",
+				\"port_range_max\": \"22\",
+				\"remote_ip_prefix\": \"0.0.0.0/0\",
+				\"ethertype\": \"IPv4\"
+			}
+		}")
+								
