@@ -76,4 +76,7 @@ export OS_TOKEN=${OS_TOKEN//$'\015'}
 #	            \"networks\": \"$blue\",
 #	           }
 #   }"
-curl -X POST "http://127.0.0.1/compute/v2.1/servers" -H "Content-Type: application/json" -H "X-Auth-Token: $OS_TOKEN" -d "{\"server\":{\"name\":\"vm3\",\"imageRef\":\"aaab4dfd-8d9c-409e-a821-a0137e49e869\", \"flavorRef\":42, \"networks\": [{\"uuid\": \"$blue\"}]}}"
+curl -X POST "http://127.0.0.1/compute/v2.1/servers" -H "Content-Type: application/json" -H "X-Auth-Token: $OS_TOKEN" -d "{\"server\":{\"name\":\"vm1\",\"imageRef\":\"aaab4dfd-8d9c-409e-a821-a0137e49e869\", \"flavorRef\":42, \"networks\": [{\"uuid\": \"$blue\"}]}}"
+curl -X POST "http://127.0.0.1/compute/v2.1/servers" -H "Content-Type: application/json" -H "X-Auth-Token: $OS_TOKEN" -d "{\"server\":{\"name\":\"vm2\",\"imageRef\":\"aaab4dfd-8d9c-409e-a821-a0137e49e869\", \"flavorRef\":42, \"networks\": [{\"uuid\": \"$red\"}]}}"
+curl -X POST "http://127.0.0.1/compute/v2.1/servers" -H "Content-Type: application/json" -H "X-Auth-Token: $OS_TOKEN" -d "{\"server\":{\"name\":\"vm3\",\"imageRef\":\"aaab4dfd-8d9c-409e-a821-a0137e49e869\", \"flavorRef\":42, \"networks\": [{\"uuid\": \"7697d4c6-5b4c-4ea9-a1d6-af7d7f716f2b\"}]}}"
+
