@@ -1,5 +1,5 @@
 #!/bin/bash -ex
 
-cat <<EOF > /C:/myjson.json
+cat <<EOF > /myjson.json
 {"id" : "id"}
 EOF
