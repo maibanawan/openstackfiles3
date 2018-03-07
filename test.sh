@@ -67,7 +67,7 @@ export OS_TOKEN=${OS_TOKEN//$'\015'}
 #	   }
 #    }")
 
-curl -g -i -X POST http://127.0.0.1/compute/v2/servers -H "Accept: application/json"  -H "X-Auth-Token: $OS_TOKEN" -H "Content-Type: application/json" \
+curl -g -i -X POST http://localhost/compute/v2/servers -H "Accept: application/json"  -H "X-Auth-Token: $OS_TOKEN" -H "Content-Type: application/json" \
 -d "{
       \"server\": {
               \"name\": \"test\",
