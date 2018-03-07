@@ -13,6 +13,7 @@ export port_router=$(cat ports.json | jq -r '.ports['$i'].device_owner')
 if [[ port_router == "network:router_interface" ]];
 then
 export port_$x_id=$(cat ports.json | jq -r '.ports['$i'].id')
+echo $port_$x_id
 export port_$x_status=$(cat ports.json | jq -r '.ports['$i'].status')
 x=$(( $x + 1 ))
 fi
