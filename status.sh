@@ -60,13 +60,13 @@ echo $port_router
 if [[ $port_router == network:router_interface ]] || [[ $port_router == network:router_gateway ]];
 then
 export 'port_'$x'_owner'=$(cat ports.json | jq -r '.ports['$i'].device_owner')
-echo $'port_'$x'_owner'
+#echo $port_$x_owner
 export 'port_'$x'_id'=$(cat ports.json | jq -r '.ports['$i'].id')
-echo $'port_'$x'_id'
+#echo $port_$x_id
 export 'port_'$x'_status'=$(cat ports.json | jq -r '.ports['$i'].status')
-echo $'port_'$x'_status'
+#echo $port_$x_status
 x=$(( $x + 1 ))
-echo $x
+#echo $x
 fi
 done
 
