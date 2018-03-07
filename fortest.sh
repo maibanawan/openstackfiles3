@@ -11,7 +11,7 @@ for i in `seq 0 8`
 do
 export port_router=$(cat ports.json | jq -r '.ports['$i'].device_owner')
 echo $port_router
-if [[ port_router == "network:router_interface" ]] || [[ port_router == "network:router_gateway" ]];
+if [[ port_router == network:router_interface ]] || [[ port_router == network:router_gateway ]];
 then
 export port_$x_owner=$(cat ports.json | jq -r '.ports['$i'].device_owner')
 export port_$x_id=$(cat ports.json | jq -r '.ports['$i'].id')
