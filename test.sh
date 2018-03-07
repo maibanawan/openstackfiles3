@@ -2,11 +2,27 @@
 #import json
 export OS_TOKEN=$(curl -i -H "Content-Type: application/json" -d '{ "auth": {"identity": {"methods": ["password"],"password": {"user": {"name": "admin","domain": { "id": "default" },"password": "secret"}}},"scope": {"project": {"name": "admin","domain": { "id": "default" }}}}}' http://localhost/identity/v3/auth/tokens | awk '/X-Subject-Token/ {print $2}')
 echo $OS_TOKEN
+export PUBLIC_create=$(curl -s http://127.0.0.1:9696/v2.0/networks -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "X-Auth-Token:$OS_TOKEN" -d '{"network": {"name":"PUBLIC","provider:network_type": "flat","provider:physical_network": "public","shared":"true",}}' | python -m json.tool > p.json)
 export BLUE_create=$(curl -s http://127.0.0.1:9696/v2.0/networks -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "X-Auth-Token:$OS_TOKEN" -d '{"network": {"name":"BLUE"}}' | python -m json.tool > b.json)
 export RED_create=$(curl -s http://127.0.0.1:9696/v2.0/networks -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "X-Auth-Token:$OS_TOKEN" -d '{"network": {"name":"RED"}}' | python -m json.tool > r.json)
+export public=$(cat p.json | jq -r '.network.id')
 export blue=$(cat b.json | jq -r '.network.id')
 export red=$(cat r.json | jq -r '.network.id')
 #bash test_red.sh $red
+export PUBLIC_SUBNET=$(curl -s -X POST http://127.0.0.1:9696/v2.0/subnets \
+            -H "Content-Type: application/json" \
+            -H "X-Auth-Token: $OS_TOKEN" \
+	    -d "{
+			\"subnet\": {
+				\"network_id\": \"$public\",
+				\"ip_version\": 4,
+				\"name\": \"subnet-blue\",
+				\"cidr\": \"172.24.4.0/24\",
+				\"enable_dhcp\": true,
+				\"gateway_ip\": \"172.24.4.1\"
+			}
+		}" | python -m json.tool > psub.json)
+export psubid=$(cat psub.json | jq -r '.subnet.id')		
 export BLUE_SUBNET=$(curl -s -X POST http://127.0.0.1:9696/v2.0/subnets \
             -H "Content-Type: application/json" \
             -H "X-Auth-Token: $OS_TOKEN" \
@@ -37,7 +53,7 @@ export RED_SUBNET=$(curl -s -X POST http://127.0.0.1:9696/v2.0/subnets \
 		}" | python -m json.tool > rsub.json)
 export rsubid=$(cat rsub.json | jq -r '.subnet.id')
 echo $rsubid
-curl -s http://127.0.0.1:9696/v2.0/routers -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "X-Auth-Token:$OS_TOKEN" -d '{"router":{"external_gateway_info":{"network_id":"7697d4c6-5b4c-4ea9-a1d6-af7d7f716f2b"},"name":"router-new"}}' | python -m json.tool > rout.json		
+curl -s http://127.0.0.1:9696/v2.0/routers -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "X-Auth-Token:$OS_TOKEN" -d '{"router":{"external_gateway_info":{"network_id":"$public"},"name":"router-new"}}' | python -m json.tool > rout.json		
 export router=$(cat rout.json | jq -r '.router.id')
 echo $router
 export ADD_ROUTER_IF1=$(curl -s -X PUT http://127.0.0.1:9696/v2.0/routers/$router/add_router_interface \
