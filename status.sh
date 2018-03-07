@@ -69,7 +69,33 @@ x=$(( $x + 1 ))
 echo $x
 fi
 done
-	    
+
+cat <<EOF > myjson.json
+{
+    "Networks": 
+        { 
+	  { 
+	    "Name":"$net1_name",
+	    "ID":"$net1_id",
+	    "status":"$net1_status"
+	  },
+	  {
+	    "Name":"$net2_name",
+	    "ID":"$net2_id",
+	    "status":"$net2_status"
+	  },
+	  {
+	    "Name":"$net3_name",
+	    "ID":"$net3_id",
+	    "status":"$net3_status"
+	  }
+	  
+	}
+}
+EOF
+
+
+
 	    	    
 
 
