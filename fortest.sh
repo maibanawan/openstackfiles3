@@ -1,9 +1,19 @@
 #!/bin/bash -ex
 
-for i in `seq 1 10`
+export OS_TOKEN=$(curl -i -H "Content-Type: application/json" -d '{ "auth": {"identity": {"methods": ["password"],"password": {"user": {"name": "admin","domain": { "id": "default" },"password": "secret"}}},"scope": {"project": {"name": "admin","domain": { "id": "default" }}}}}' http://localhost/identity/v3/auth/tokens | awk '/X-Subject-Token/ {print $2}')
+echo $OS_TOKEN
+export RESP_JSON_ROUTERS=$(curl -s -X GET http://127.0.0.1:9696/v2.0/ports \
+            -H "Content-Type: application/json" \
+            -H "X-Auth-Token: $OS_TOKEN" | python -mjson.tool > ports.json)
+
+x=1;
+for i in `seq 1 9`
 do
-if [[ $i == 2 ]];
+export port_router=$(cat ports.json | jq -r '.ports[$i].device_owner')
+if [[ port_router == "network:router_interface" ]];
 then
-echo $i
+export port_$x_id=$(cat ports.json | jq -r '.ports[$i].id')
+export port_$x_status=$(cat ports.json | jq -r '.ports[$i].status')
+x=$(( $x + 1 ))
 fi
 done
