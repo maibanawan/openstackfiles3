@@ -162,7 +162,6 @@ export RESP_JSON_SECURITY_GROUP_RULES_CREATE=$(curl -s -X POST http://localhost:
             -H "X-Auth-Token: $OS_TOKEN" \
 	    -d "{
 			\"security_group_rule\": {
-				\"security_group_id\": \"c2cbb11e-d7a8-43ed-b48f-46b0a5e06f43\",
 				\"direction\": \"egress\",
 				\"protocol\": \"icmp\",
 				\"remote_ip_prefix\": \"0.0.0.0/0\",
