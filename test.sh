@@ -62,6 +62,12 @@ export RESP_JSON_ROUTERS_CREATE=$(curl -s -X POST http://127.0.0.1:9696/v2.0/rou
 	    -d "{
 			\"router\": {
 				\"external_gateway_info\": {
+				        \"external_fixed_ips\": [
+                                             {
+                                                \"ip_address\": \"172.24.4.9\",
+                                                \"subnet_id\": \"$psubid\"
+                                             }
+                                        ],
 					\"network_id\": \"$public\"
 				},
 				\"name\": \"router-new\"
