@@ -123,7 +123,7 @@ export SECURITY_GROUPS_CREATE=$(curl -s -X POST http://localhost:9696/v2.0/secur
 			\"security_group\": {
 				\"name\": \"mysg\",
 			}
-		}" | python -mjson.tool > sg.json)
+		}" | python -m json.tool > sg.json)
 		
 curl -X POST "http://localhost/compute/v2.1/servers" -H "Content-Type: application/json" -H "X-Auth-Token: $OS_TOKEN" -d "{\"server\":{\"name\":\"vm1\",\"imageRef\":\"aaab4dfd-8d9c-409e-a821-a0137e49e869\", \"flavorRef\":42, \"networks\": [{\"uuid\": \"$blue\"}]}}"
 curl -X POST "http://localhost/compute/v2.1/servers" -H "Content-Type: application/json" -H "X-Auth-Token: $OS_TOKEN" -d "{\"server\":{\"name\":\"vm2\",\"imageRef\":\"aaab4dfd-8d9c-409e-a821-a0137e49e869\", \"flavorRef\":42, \"networks\": [{\"uuid\": \"$red\"}]}}"
