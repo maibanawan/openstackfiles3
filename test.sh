@@ -127,8 +127,6 @@ export RESP_JSON_SECURITY_GROUP_RULES_CREATE=$(curl -s -X POST http://127.0.0.1:
 				\"security_group_id\": \"c2cbb11e-d7a8-43ed-b48f-46b0a5e06f43\",
 				\"direction\": \"egress\",
 				\"protocol\": \"tcp\",
-				\"port_range_min\": \"any\",
-				\"port_range_max\": \"any\",
 				\"remote_ip_prefix\": \"0.0.0.0/0\",
 				\"ethertype\": \"IPv4\"
 			}
@@ -142,8 +140,6 @@ export RESP_JSON_SECURITY_GROUP_RULES_CREATE=$(curl -s -X POST http://127.0.0.1:
 				\"security_group_id\": \"c2cbb11e-d7a8-43ed-b48f-46b0a5e06f43\",
 				\"direction\": \"ingress\",
 				\"protocol\": \"tcp\",
-				\"port_range_min\": \"any\",
-				\"port_range_max\": \"any\",
 				\"remote_ip_prefix\": \"0.0.0.0/0\",
 				\"ethertype\": \"IPv4\"
 			}
@@ -156,8 +152,6 @@ export RESP_JSON_SECURITY_GROUP_RULES_CREATE=$(curl -s -X POST http://127.0.0.1:
 				\"security_group_id\": \"c2cbb11e-d7a8-43ed-b48f-46b0a5e06f43\",
 				\"direction\": \"ingress\",
 				\"protocol\": \"icmp\",
-				\"port_range_min\": \"any\",
-				\"port_range_max\": \"any\",
 				\"remote_ip_prefix\": \"0.0.0.0/0\",
 				\"ethertype\": \"IPv4\"
 			}
@@ -170,8 +164,6 @@ export RESP_JSON_SECURITY_GROUP_RULES_CREATE=$(curl -s -X POST http://127.0.0.1:
 				\"security_group_id\": \"c2cbb11e-d7a8-43ed-b48f-46b0a5e06f43\",
 				\"direction\": \"egress\",
 				\"protocol\": \"icmp\",
-				\"port_range_min\": \"any\",
-				\"port_range_max\": \"any\",
 				\"remote_ip_prefix\": \"0.0.0.0/0\",
 				\"ethertype\": \"IPv4\"
 			}
