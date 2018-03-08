@@ -9,12 +9,16 @@
 #-H "Content-Type: application/json"\
 cat <<EOF > my.json
 {
-      "subnet": { 
-        "host_routes":[
-          {
-            "destination":"0.0.0.0/0",
-            "nexthop":"172.24.4.8"
-          }
-  ]}} 
+   "subnet": 
+      { 
+        "host_routes":
+          [
+             {
+                "destination":"0.0.0.0/0",
+                "nexthop":"172.24.4.8"
+             }
+          ]
+       }
+} 
   
   EOF
