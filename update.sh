@@ -21,4 +21,4 @@ export OS_TOKEN=$(curl -i -H "Content-Type: application/json" -d '{ "auth": {"id
 echo $OS_TOKEN
 export OS_TOKEN=${OS_TOKEN//$'\015'}		
 HOST_ROUTES_AZ1={\"nexthop\":\"172.24.4.8\",\"destination\":\"10.0.0.0/24\"}
-export x=$(curl -k -X PUT http://127.0.0.1:9696/v2.0/subnets/b5f13dd8-b273-46c0-9472-e31feb444b22 -H "X-Auth-Token: $OS_TOKEN" -H "Content-Type: application/json" -d cat my.json | pyhton -m json.tool
+export x=$(curl -k -X PUT "http://127.0.0.1:9696/v2.0/subnets/b5f13dd8-b273-46c0-9472-e31feb444b22" -H "Content-Type: application/json" -H "X-Auth-Token: $OS_TOKEN" -d "{\"subnet\":{\"host_routes":[{"destination":"0.0.0.0/0","nexthop":"172.24.4.8"}]}}")
