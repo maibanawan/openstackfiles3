@@ -33,3 +33,5 @@ export RESP_JSON_ROUTERS_CREATE=$(curl -s -X POST http://127.0.0.1:9696/v2.0/rou
 				\"name\": \"router-new\"
 			}
 		}" | python -m json.tool > rout.json)
+export ext_gate=$(cat rout.json | jq -r '.router.external_gateway_info.external_fixed_ips[0].ip_address')
+		
