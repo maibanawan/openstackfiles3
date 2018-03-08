@@ -13,7 +13,7 @@ export x=$(curl -k -X PUT http://127.0.0.1:9696/v2.0/subnets/$psubid -H "Content
             [
               {
                 "destination":"0.0.0.0/0",
-                "nexthop":"$ext_gate"
+                "nexthop":"172.24.4.9"
               }
             ]
          }
