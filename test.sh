@@ -68,7 +68,7 @@ export RESP_JSON_ROUTERS_CREATE=$(curl -s -X POST http://127.0.0.1:9696/v2.0/rou
 			}
 		}" | python -m json.tool > rout.json)
 export router=$(cat rout.json | jq -r '.router.id')
-export ext_gate=$(cat rout.json | jq -r '.router.external_gateway_info.external_fixed_ips.ip_address')
+export ext_gate=$(cat rout.json | jq -r '.router.external_gateway_info.external_fixed_ips[0].ip_address')
 echo $router
 export ADD_ROUTER_IF1=$(curl -s -X PUT http://127.0.0.1:9696/v2.0/routers/$router/add_router_interface \
             -H "Content-Type: application/json" \
