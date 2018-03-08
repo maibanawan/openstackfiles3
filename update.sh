@@ -7,15 +7,14 @@
 #export x=$(curl -k -X PUT http://127.0.0.1:9696/v2.0/subnets/b5f13dd8-b273-46c0-9472-e31feb444b22\
 #-H "X-Auth-Token: $OS_TOKEN"\
 #-H "Content-Type: application/json"\
--d '{
+cat <<EOF > my.json
+{
       "subnet": { 
         "host_routes":[
           {
             "destination":"0.0.0.0/0",
             "nexthop":"172.24.4.8"
           }
-          ]}} | jq .''
-
-
-
-
+  ]}} 
+  
+  EOF
