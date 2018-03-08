@@ -126,9 +126,9 @@ export RESP_JSON_SECURITY_GROUPS_CREATE=$(curl -s -X POST http://localhost:9696/
 		}" | python -m json.tool > sg.json)
 export sg_id=$(cat sg.json | jq -r '.security_group.id')		
 		
-curl -X POST "http://localhost/compute/v2.1/servers" -H "Content-Type: application/json" -H "X-Auth-Token: $OS_TOKEN" -d "{\"server\":{\"name\":\"vm1\",\"imageRef\":\"aaab4dfd-8d9c-409e-a821-a0137e49e869\", \"flavorRef\":42, "security_groups": [{"name": "mysg"}], \"networks\": [{\"uuid\": \"$blue\"}]}}"
-curl -X POST "http://localhost/compute/v2.1/servers" -H "Content-Type: application/json" -H "X-Auth-Token: $OS_TOKEN" -d "{\"server\":{\"name\":\"vm2\",\"imageRef\":\"aaab4dfd-8d9c-409e-a821-a0137e49e869\", \"flavorRef\":42, "security_groups": [{"name": "mysg"}], \"networks\": [{\"uuid\": \"$red\"}]}}"
-curl -X POST "http://localhost/compute/v2.1/servers" -H "Content-Type: application/json" -H "X-Auth-Token: $OS_TOKEN" -d "{\"server\":{\"name\":\"vm3\",\"imageRef\":\"aaab4dfd-8d9c-409e-a821-a0137e49e869\", \"flavorRef\":42, "security_groups": [{"name": "mysg"}], \"networks\": [{\"uuid\": \"$public\"}]}}"
+curl -X POST "http://localhost/compute/v2.1/servers" -H "Content-Type: application/json" -H "X-Auth-Token: $OS_TOKEN" -d "{\"server\":{\"name\":\"vm1\",\"imageRef\":\"aaab4dfd-8d9c-409e-a821-a0137e49e869\", \"flavorRef\":42, \"security_groups\": [{\"name\": \"mysg\"}], \"networks\": [{\"uuid\": \"$blue\"}]}}"
+curl -X POST "http://localhost/compute/v2.1/servers" -H "Content-Type: application/json" -H "X-Auth-Token: $OS_TOKEN" -d "{\"server\":{\"name\":\"vm2\",\"imageRef\":\"aaab4dfd-8d9c-409e-a821-a0137e49e869\", \"flavorRef\":42, \"security_groups\": [{\"name\": \"mysg\"}], \"networks\": [{\"uuid\": \"$red\"}]}}"
+curl -X POST "http://localhost/compute/v2.1/servers" -H "Content-Type: application/json" -H "X-Auth-Token: $OS_TOKEN" -d "{\"server\":{\"name\":\"vm3\",\"imageRef\":\"aaab4dfd-8d9c-409e-a821-a0137e49e869\", \"flavorRef\":42, \"security_groups\": [{\"name\": \"mysg\"}], \"networks\": [{\"uuid\": \"$public\"}]}}"
 
 #curl -X POST "http://172.0.0.1:8774/v1.1/5/os-security-group-rules" -H "X-Auth-Token: $OS_TOKEN" -H "Content-Type: application/json" -d "{\"security_group_rule\":{\"ip_protocol\":\"tcp\",\"from_port\":\"22\",\"to_port\":\"22\",\"cidr\":\"0.0.0.0/0\"}}" 
 export RESP_JSON_SECURITY_GROUP_RULES_CREATE=$(curl -s -X POST http://localhost:9696/v2.0/security-group-rules \
