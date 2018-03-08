@@ -124,7 +124,7 @@ export RESP_JSON_SECURITY_GROUP_RULES_CREATE=$(curl -s -X POST http://127.0.0.1:
             -H "X-Auth-Token: $OS_TOKEN" \
 	    -d "{
 			\"security_group_rule\": {
-				\"security_group_id\": \"a40bda32-d2c8-4255-961a-952cca145ec3\",
+				\"security_group_id\": \"c2cbb11e-d7a8-43ed-b48f-46b0a5e06f43\",
 				\"direction\": \"egress\",
 				\"protocol\": \"tcp\",
 				\"port_range_min\": \"any\",
@@ -139,7 +139,7 @@ export RESP_JSON_SECURITY_GROUP_RULES_CREATE=$(curl -s -X POST http://127.0.0.1:
             -H "X-Auth-Token: $OS_TOKEN" \
 	    -d "{
 			\"security_group_rule\": {
-				\"security_group_id\": \"a40bda32-d2c8-4255-961a-952cca145ec3\",
+				\"security_group_id\": \"c2cbb11e-d7a8-43ed-b48f-46b0a5e06f43\",
 				\"direction\": \"ingress\",
 				\"protocol\": \"tcp\",
 				\"port_range_min\": \"any\",
@@ -153,7 +153,7 @@ export RESP_JSON_SECURITY_GROUP_RULES_CREATE=$(curl -s -X POST http://127.0.0.1:
             -H "X-Auth-Token: $OS_TOKEN" \
 	    -d "{
 			\"security_group_rule\": {
-				\"security_group_id\": \"a40bda32-d2c8-4255-961a-952cca145ec3\",
+				\"security_group_id\": \"c2cbb11e-d7a8-43ed-b48f-46b0a5e06f43\",
 				\"direction\": \"ingress\",
 				\"protocol\": \"icmp\",
 				\"port_range_min\": \"any\",
@@ -167,7 +167,7 @@ export RESP_JSON_SECURITY_GROUP_RULES_CREATE=$(curl -s -X POST http://127.0.0.1:
             -H "X-Auth-Token: $OS_TOKEN" \
 	    -d "{
 			\"security_group_rule\": {
-				\"security_group_id\": \"a40bda32-d2c8-4255-961a-952cca145ec3\",
+				\"security_group_id\": \"c2cbb11e-d7a8-43ed-b48f-46b0a5e06f43\",
 				\"direction\": \"egress\",
 				\"protocol\": \"icmp\",
 				\"port_range_min\": \"any\",
