@@ -12,7 +12,7 @@ export x=$(curl -k -X PUT http://127.0.0.1:9696/v2.0/subnets/b5f13dd8-b273-46c0-
                                       \"nexthop\":\"172.24.4.8\",\"destination\":\"10.0.0.0/24\"
                          ] 
 			  }
-		    }" | python -m json.tool)
+		    }")
 
 
 
