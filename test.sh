@@ -13,14 +13,14 @@ export red=$(cat r.json | jq -r '.network.id')
 export PUBLIC_SUBNET=$(curl -s -X POST http://127.0.0.1:9696/v2.0/subnets \
             -H "Content-Type: application/json" \
             -H "X-Auth-Token: $OS_TOKEN" \
-	    -d "{
+            -d "{
 			\"subnet\": {
 				\"network_id\": \"$public\",
 				\"ip_version\": 4,
 				\"name\": \"subnet-public\",
 				\"cidr\": \"172.24.4.0/24\",
 				\"enable_dhcp\": true,
-				\"gateway_ip\": \"172.24.4.1\",
+				\"gateway_ip\": \"172.24.4.1\"
 			}
 		}" | python -m json.tool > psub.json)
 export psubid=$(cat psub.json | jq -r '.subnet.id')	
