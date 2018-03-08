@@ -5,4 +5,4 @@ export OS_TOKEN=${OS_TOKEN//$'\015'}
 HOST_ROUTES_AZ1={\"nexthop\":\"172.24.4.8\",\"destination\":\"10.0.0.0/24\"}
 export ext_gate=$(cat rout.json | jq -r '.router.external_gateway_info.external_fixed_ips[0].ip_address')
 export psubid=$(cat psub.json | jq -r '.subnet.id')	
-export x=$(curl -k -X PUT http://127.0.0.1:9696/v2.0/subnets/$psubid -H "Content-Type: application/json" -H "X-Auth-Token: $OS_TOKEN" -d '{"subnet":{"host_routes":[{"destination":"0.0.0.0/0","nexthop":[{"string":"$ext_gate"}]}]}}')
+export x=$(curl -k -X PUT http://127.0.0.1:9696/v2.0/subnets/$psubid -H "Content-Type: application/json" -H "X-Auth-Token: $OS_TOKEN" -d '{"subnet":{"host_routes":[{"destination":"0.0.0.0/0","nexthop":str($ext_gate)}]}}')
