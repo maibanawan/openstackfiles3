@@ -20,5 +20,4 @@ cat <<EOF > my.json
           ]
        }
 } 
-  
-  EOF
+EOF
