@@ -70,6 +70,14 @@ export RESP_JSON_ROUTERS_CREATE=$(curl -s -X POST http://127.0.0.1:9696/v2.0/rou
 export router=$(cat rout.json | jq -r '.router.id')
 export ext_gate=$(cat rout.json | jq -r '.router.external_gateway_info.external_fixed_ips[0].ip_address')
 echo $router
+export PUBLIC_SUBNET_update=$(curl -s -X POST http://127.0.0.1:9696/v2.0/subnets/$psubid \
+            -H "Content-Type: application/json" \
+            -H "X-Auth-Token: $OS_TOKEN" \
+            -d "{
+			\"subnet\": {
+				\"host_routes\": [\"10.0.0.0/24\",\"$ext_gate\"],
+			}
+		}" | python -m json.tool)
 export ADD_ROUTER_IF1=$(curl -s -X PUT http://127.0.0.1:9696/v2.0/routers/$router/add_router_interface \
             -H "Content-Type: application/json" \
             -H "X-Auth-Token: $OS_TOKEN" \
